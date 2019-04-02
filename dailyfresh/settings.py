@@ -15,13 +15,14 @@ import os
 import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$&xr5nb!&va%ft))v(c+s+7xlm2v7ft34gu*cbu^apt674()13'
+SECRET_KEY = 'bga5t#n-a9=mx^glxprkc#16c#z*n_t%o8jiwh(y*i+h7c!xo$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,11 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tinymce',
-    'user',
-    'goods',
-    'order',
-    'cart',
+    'tinymce', # 富文本编辑器
+    'user', # 用户模块
+    'goods', # 商品模块
+    'cart', # 购物车模块
+    'order', # 订单模块
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,15 +88,15 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
-        'PORT': 3306,
+        'PORT':3306,
     }
-
 }
 
+# django认证系统使用的模型类
+AUTH_USER_MODEL='user.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
-AUTH_USER_MODEL = 'user.User'
 
 LANGUAGE_CODE = 'zh-hans'
 
@@ -114,8 +115,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+# 富文本编辑器配置
 TINYMCE_DEFAULT_CONFIG = {
-    'theme': 'advanced',
+    'theme': 'advance',
     'width': 600,
     'height': 400,
 }
@@ -143,6 +145,10 @@ CACHES = {
         }
     }
 }
+
 # 配置session存储
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+# 配置登录url地址
+LOGIN_URL='/user/login' # /accounts/login
